@@ -96,7 +96,7 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Go to DANIEL.org →
+          Go to NEWDANIEL.org →
         </a>
       </footer>
     </div>
