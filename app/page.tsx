@@ -16,12 +16,13 @@ export default function Home() {
           <li className="mb-2 tracking-[-.01em]">
             Get started by editing{" "}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
+              app/page.tsx Yes sir
             </code>
             .
           </li>
           <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
+            Save and see your changes instantly.123123chgjcgh
+            vguvjhkvhcgchvchchhhvghv ghvh
           </li>
         </ol>
 
@@ -95,7 +96,7 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Go to nextjs.org →
+          Go to NEWDANIEL.org →
         </a>
       </footer>
     </div>
