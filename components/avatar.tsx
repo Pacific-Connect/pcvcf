@@ -19,7 +19,7 @@ export const Avatar = ({
     const fallbackSrc = src || '/default-avatar.png';
 
     return (
-        <div className="w-80 p-6 border rounded-2xl shadow-md bg-white flex flex-col items-center space-y-4">
+        <div className="w-50 p-6 border rounded-2xl shadow-md bg-white flex flex-col items-center space-y-4">
             <Image
                 src={fallbackSrc}
                 alt={alt}
