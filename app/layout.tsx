@@ -20,9 +20,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               Pacific Connect
             </Link>
             <nav className="space-x-6 text-sm sm:text-base">
-              <Link href="/" className="hover:underline">Home</Link>
-              <Link href="/about" className="hover:underline">About</Link>
-            </nav>
+              <Link
+                href="/"
+                className="relative px-2 py-1 transition duration-200 hover:text-blue-600 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-full"
+              >
+                Home
+              </Link>
+
+              <Link
+                href="/about"
+                className="relative px-2 py-1 transition duration-200 hover:text-blue-600 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-full"
+              >
+                About
+              </Link>            </nav>
           </div>
         </header>
 
