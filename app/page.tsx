@@ -6,48 +6,48 @@ import Link from "next/link";
 export default function HomePage() {
   const companyLogos = [
     {
-      name: "Company A",
-      logo: "/logos/companyA.png",
+      name: "Google",
+      logo: "/Google-Logo.png",
       url: "https://companyA.com",
     },
     {
-      name: "Company B",
-      logo: "/logos/companyB.png",
+      name: "Facebook",
+      logo: "/Facebook-Logo.png",
       url: "https://companyB.com",
     },
     {
-      name: "Company C",
-      logo: "/logos/companyC.png",
+      name: "Amazon",
+      logo: "/Amazon-Logo.png",
       url: "https://companyC.com",
     },
     {
-      name: "Company D",
-      logo: "/logos/companyD.png",
+      name: "Twitter",
+      logo: "/Twitter-Logo.png",
       url: "https://companyD.com",
     },
     {
-      name: "Company E",
-      logo: "/logos/companyE.png",
+      name: "TikTok",
+      logo: "/TikTok-Logo.png",
       url: "https://companyE.com",
     },
     {
-      name: "Company F",
-      logo: "/logos/companyF.png",
+      name: "Youtube",
+      logo: "/YouTube-Logo.png",
       url: "https://companyF.com",
     },
     {
-      name: "Company G",
-      logo: "/logos/companyG.png",
+      name: "Messager",
+      logo: "/Messenger-Logo.png",
       url: "https://companyG.com",
     },
     {
-      name: "Company H",
-      logo: "/logos/companyH.png",
+      name: "WhatsApp",
+      logo: "/WhatsApp-Logo.png",
       url: "https://companyH.com",
     },
     {
-      name: "Company I",
-      logo: "/logos/companyI.png",
+      name: "Snapchat",
+      logo: "/Snapchat-Logo.png",
       url: "https://companyI.com",
     },
   ];
@@ -56,32 +56,33 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen">
       {/* HEADER */}
       <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
-        <nav className="flex items-center space-x-6">
-          <Link href="#about">About</Link>
-          <Link href="#skills">Skill</Link>
-          <Link href="#find-job">Find a Job</Link>
-          <Link href="#employer">Employer</Link>
-          <button className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-            Login
-          </button>
-        </nav>
+        {<Image src="/mainlogo.png" alt="Logo" width={150} height={100} />}
         <div className="flex items-center">
-          <Image src="/logo.png" alt="Logo" width={50} height={50} />
+          <nav className="flex items-center space-x-6">
+            <Link href="#about">About</Link>
+            <Link href="#skills">Skill</Link>
+            <Link href="#find-job">Find a Job</Link>
+            <Link href="#employer">Employer</Link>
+            <button className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+              Login
+            </button>
+          </nav>
         </div>
       </header>
 
       {/* BODY */}
-      <main className="flex-1 bg-gray-100 flex flex-col items-center justify-center p-10">
-        <div className="relative w-full max-w-4xl h-96">
+      <main className="flex-1 bg-gray-100">
+        <div className="relative w-full h-[500px]">
           <Image
-            src="/job-search.jpg"
+            src="/jobsearch.jpg"
             alt="Job Search"
             fill
-            className="object-cover rounded-lg shadow-md"
+            className="object-cover"
           />
-          <div className="absolute inset-0 flex items-center justify-center">
+          {/* Button at the center bottom */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
             <Link href="/find-job">
-              <button className="bg-blue-600 text-white px-6 py-3 rounded-lg text-xl hover:bg-blue-700">
+              <button className="bg-blue-600 text-white px-6 py-3 rounded-lg text-xl hover:bg-blue-700 shadow-lg">
                 Start Find Job
               </button>
             </Link>
