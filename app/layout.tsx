@@ -1,6 +1,7 @@
 // app/layout.tsx
 import Link from "next/link";
 import "./globals.css";
+import Image from "next/image";
 
 export const metadata = {
   title: "Pacific Connect Career Fair",
@@ -10,38 +11,35 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className="font-sans bg-white text-gray-900 flex flex-col min-h-screen">
-        <header className="bg-background text-primary">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold tracking-tight hover:opacity-90">
-              Pacific Connect
-            </Link>
-            <nav className="space-x-6 text-sm sm:text-base">
-              <Link
-                href="/"
-                className="relative px-2 py-1 transition duration-200 hover:text-blue-600 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                Home
-              </Link>
-
-              <Link
-                href="/about"
-                className="relative px-2 py-1 transition duration-200 hover:text-blue-600 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                About
-              </Link>            </nav>
+        {/* HEADER */}
+        <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
+          <Image src="/mainlogo.png" alt="Logo" width={150} height={100} />
+          <div className="flex items-center">
+            <nav className="flex items-center space-x-6">
+              <Link href="#about">About</Link>
+              <Link href="#skills">Skill</Link>
+              <Link href="#find-job">Find a Job</Link>
+              <Link href="#employer">Employer</Link>
+              <button className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                Login
+              </button>
+            </nav>
           </div>
         </header>
 
         {/* Main takes up remaining space */}
-        <main className="flex-1 max-w-7xl mx-auto px-4 py-8">
-          {children}
-        </main>
+        <main className="flex-1 max-w-7xl mx-auto px-4 py-8">{children}</main>
 
-        <footer className="bg-gray-100 text-center p-4 text-sm text-gray-600">
+        {/* FOOTER */}
+        <footer className="bg-gray-800 text-white text-center py-4">
           &copy; {new Date().getFullYear()} Pacific Connect
         </footer>
       </body>
