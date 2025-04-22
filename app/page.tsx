@@ -1,103 +1,124 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
+  const companyLogos = [
+    {
+      name: "Google",
+      logo: "/Google-Logo.png",
+      url: "https://companyA.com",
+    },
+    {
+      name: "Facebook",
+      logo: "/Facebook-Logo.png",
+      url: "https://companyB.com",
+    },
+    {
+      name: "Amazon",
+      logo: "/Amazon-Logo.png",
+      url: "https://companyC.com",
+    },
+    {
+      name: "Twitter",
+      logo: "/Twitter-Logo.png",
+      url: "https://companyD.com",
+    },
+    {
+      name: "TikTok",
+      logo: "/TikTok-Logo.png",
+      url: "https://companyE.com",
+    },
+    {
+      name: "Youtube",
+      logo: "/YouTube-Logo.png",
+      url: "https://companyF.com",
+    },
+    {
+      name: "Messager",
+      logo: "/Messenger-Logo.png",
+      url: "https://companyG.com",
+    },
+    {
+      name: "WhatsApp",
+      logo: "/WhatsApp-Logo.png",
+      url: "https://companyH.com",
+    },
+    {
+      name: "Snapchat",
+      logo: "/Snapchat-Logo.png",
+      url: "https://companyI.com",
+    },
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx Yes sir
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.123123chgjcgh
-            vguvjhkvhcgchvchchhhvghv ghvh
-          </li>
-        </ol>
+    <div className="flex flex-col min-h-screen">
+      {/* HEADER */}
+      <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
+        <Image src="/mainlogo.png" alt="Logo" width={150} height={100} />
+        <div className="flex items-center">
+          <nav className="flex items-center space-x-6">
+            <Link href="#about">About</Link>
+            <Link href="#skills">Skill</Link>
+            <Link href="#find-job">Find a Job</Link>
+            <Link href="#employer">Employer</Link>
+            <button className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+              Login
+            </button>
+          </nav>
+        </div>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* BODY */}
+      <main className="flex-1 bg-gray-100">
+        <div className="relative w-full h-[500px]">
+          <Image
+            src="/jobsearch.jpg"
+            alt="Job Search"
+            fill
+            className="object-cover"
+          />
+          {/* Button at the center bottom */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <Link href="/find-job">
+              <button className="bg-blue-600 text-white px-6 py-3 rounded-lg text-xl hover:bg-blue-700 shadow-lg">
+                Start Find Job
+              </button>
+            </Link>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to NEWDANIEL.org →
-        </a>
+
+      {/* FEATURE EMPLOYER */}
+      <section className="bg-white px-10 py-12">
+        <h2 className="text-3xl font-semibold text-center mb-8">
+          Feature Employer
+        </h2>
+        <div className="grid grid-cols-3 gap-8">
+          {companyLogos.map((company, index) => (
+            <a
+              key={index}
+              href={company.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center p-4 border rounded-lg hover:shadow-lg"
+            >
+              <Image
+                src={company.logo}
+                alt={company.name}
+                width={100}
+                height={100}
+                className="object-contain"
+              />
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-gray-800 text-white text-center py-4">
+        © pcvcf 2025
       </footer>
     </div>
   );
