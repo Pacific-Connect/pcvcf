@@ -34,6 +34,7 @@ export default function RegisterPage() {
         setError(data.message || 'Registration failed');
       }
     } catch (err) {
+      console.error(err);
       setError('Something went wrong');
     }
   };
