@@ -56,7 +56,7 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen">
       {/* HEADER */}
       <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
-        {<Image src="/mainlogo.png" alt="Logo" width={150} height={100} />}
+        <Image src="/mainlogo.png" alt="Logo" width={150} height={100} />
         <div className="flex items-center">
           <nav className="flex items-center space-x-6">
             <Link href="#about">About</Link>
