@@ -54,22 +54,6 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* HEADER */}
-      <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
-        <Image src="/mainlogo.png" alt="Logo" width={150} height={100} />
-        <div className="flex items-center">
-          <nav className="flex items-center space-x-6">
-            <Link href="#about">About</Link>
-            <Link href="#skills">Skill</Link>
-            <Link href="#find-job">Find a Job</Link>
-            <Link href="#employer">Employer</Link>
-            <button className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-              Login
-            </button>
-          </nav>
-        </div>
-      </header>
-
       {/* BODY */}
       <main className="flex-1 bg-gray-100">
         <div className="relative w-full h-[500px]">
@@ -115,11 +99,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
-      {/* FOOTER */}
-      <footer className="bg-gray-800 text-white text-center py-4">
-        © pcvcf 2025
-      </footer>
     </div>
   );
 }
