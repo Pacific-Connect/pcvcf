@@ -26,7 +26,7 @@ export default function RootLayout({
             <nav className="flex items-center space-x-6">
               <Link href="/">Home</Link>
               <Link href="/about">About</Link>
-              <Link href="#">Skill</Link>
+              <Link href="/skills">Skill</Link>
               <Link href="#">Find a Job</Link>
               <Link href="#">Employer</Link>
               <Link href="/auth/login">
