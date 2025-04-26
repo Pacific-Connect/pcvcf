@@ -8,47 +8,47 @@ export default function HomePage() {
     {
       name: "Google",
       logo: "/Google-Logo.png",
-      url: "https://companyA.com",
+      url: "#",
     },
     {
       name: "Facebook",
       logo: "/Facebook-Logo.png",
-      url: "https://companyB.com",
+      url: "#",
     },
     {
       name: "Amazon",
       logo: "/Amazon-Logo.png",
-      url: "https://companyC.com",
+      url: "#",
     },
     {
       name: "Twitter",
       logo: "/Twitter-Logo.png",
-      url: "https://companyD.com",
+      url: "#",
     },
     {
       name: "TikTok",
       logo: "/TikTok-Logo.png",
-      url: "https://companyE.com",
+      url: "#",
     },
     {
       name: "Youtube",
       logo: "/YouTube-Logo.png",
-      url: "https://companyF.com",
+      url: "#",
     },
     {
       name: "Messager",
       logo: "/Messenger-Logo.png",
-      url: "https://companyG.com",
+      url: "#",
     },
     {
       name: "WhatsApp",
       logo: "/WhatsApp-Logo.png",
-      url: "https://companyH.com",
+      url: "#",
     },
     {
       name: "Snapchat",
       logo: "/Snapchat-Logo.png",
-      url: "https://companyI.com",
+      url: "#",
     },
   ];
 
