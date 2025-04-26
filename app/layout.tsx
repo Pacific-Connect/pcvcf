@@ -25,10 +25,10 @@ export default function RootLayout({
           <div className="flex items-center">
             <nav className="flex items-center space-x-6">
               <Link href="/">Home</Link>
-              <Link href="about">About</Link>
-              <Link href="skills">Skill</Link>
-              <Link href="find-job">Find a Job</Link>
-              <Link href="employer">Employer</Link>
+              <Link href="/about">About</Link>
+              <Link href="#">Skill</Link>
+              <Link href="#">Find a Job</Link>
+              <Link href="#">Employer</Link>
               <Link href="/auth/login">
                 <button className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                   Login
