@@ -21,7 +21,12 @@ export default function RootLayout({
       <body className="font-sans bg-white text-gray-900 flex flex-col min-h-screen">
         {/* HEADER */}
         <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
-          <Image src="/mainlogo.png" alt="Logo" width={150} height={100} />
+          <Link href="/">
+            <div className="flex items-center space-x-2">
+              <Image src="/mainlogo.png" alt="Logo" width={45} height={45} />
+              <span className="text-2xl font-bold">Pacific Connect</span>
+            </div>
+          </Link>
           <div className="flex items-center">
             <nav className="flex items-center space-x-6">
               <Link href="/">Home</Link>
