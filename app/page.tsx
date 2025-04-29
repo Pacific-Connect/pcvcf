@@ -81,7 +81,7 @@ export default function HomePage() {
         </h2>
         <div className="grid grid-cols-3 gap-8">
           {companyLogos.map((company, index) => (
-            <a
+            <Link
               key={index}
               href={company.url}
               // target="_blank"
@@ -95,7 +95,7 @@ export default function HomePage() {
                 height={100}
                 className="object-contain"
               />
-            </a>
+            </Link>
           ))}
         </div>
       </section>
