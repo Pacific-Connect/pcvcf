@@ -65,7 +65,7 @@ export default function HomePage() {
           />
           {/* Button at the center bottom */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-            <Link href="/find-job">
+            <Link href="#">
               <button className="bg-blue-600 text-white px-6 py-3 rounded-lg text-xl hover:bg-blue-700 shadow-lg">
                 Start Find Job
               </button>
