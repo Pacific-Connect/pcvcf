@@ -65,7 +65,7 @@ export default function HomePage() {
           />
           {/* Button at the center bottom */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-            <Link href="/find-job">
+            <Link href="#">
               <button className="bg-blue-600 text-white px-6 py-3 rounded-lg text-xl hover:bg-blue-700 shadow-lg">
                 Start Find Job
               </button>
@@ -81,11 +81,11 @@ export default function HomePage() {
         </h2>
         <div className="grid grid-cols-3 gap-8">
           {companyLogos.map((company, index) => (
-            <a
+            <Link
               key={index}
               href={company.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              // target="_blank"
+              // rel="noopener noreferrer"
               className="flex items-center justify-center p-4 border rounded-lg hover:shadow-lg"
             >
               <Image
@@ -95,7 +95,7 @@ export default function HomePage() {
                 height={100}
                 className="object-contain"
               />
-            </a>
+            </Link>
           ))}
         </div>
       </section>
