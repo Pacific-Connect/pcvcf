@@ -84,8 +84,8 @@ export default function HomePage() {
             <a
               key={index}
               href={company.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              // target="_blank"
+              // rel="noopener noreferrer"
               className="flex items-center justify-center p-4 border rounded-lg hover:shadow-lg"
             >
               <Image
