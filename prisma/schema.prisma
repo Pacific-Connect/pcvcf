@@ -10,3 +10,16 @@ datasource db {
   provider  = "postgresql"
   url  	    = env("DATABASE_URL")
 }
+
+model Student {
+  id             String   @id @default(uuid()) //I'm thinking of personal id like facebook url to your profile that you could customize to be anything you want
+  firstName      String
+  lastName       String
+  email          String   @unique
+  major          String
+  graduationYear Int
+  WebsiteUrl     String?   //Optional field
+  resumeUrl      String?   //I'm not sure about this one, if we let student attached instead maybe we don't need this? Or just make it optional field
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
