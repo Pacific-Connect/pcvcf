@@ -10,3 +10,16 @@ datasource db {
   provider  = "postgresql"
   url  	    = env("DATABASE_URL")
 }
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String
+  isAdmin   Boolean   @default(false)
+
+  student   Student?  @relation(fields: [id], references: [id])
+  employer  Employer? @relation(fields: [id], references: [id])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
