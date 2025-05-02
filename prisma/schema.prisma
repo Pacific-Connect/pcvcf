@@ -12,7 +12,7 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
+  id        String    @id @default(uuid()) // It would be ideal if the student and employer schemas also used this
   email     String    @unique
   password  String
   isAdmin   Boolean   @default(false)
