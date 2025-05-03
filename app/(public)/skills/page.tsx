@@ -1,7 +1,7 @@
 export default function SkillsInfoPage() {
     return (
       <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
+        <div className="mx-auto bg-white p-8 rounded-lg shadow-md">
           <h1 className="text-gray-700 text-3xl font-bold mb-6 text-center">
             Understanding Skills for the BYUH Virtual Career Fair
           </h1>
