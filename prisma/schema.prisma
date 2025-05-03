@@ -32,7 +32,19 @@ model Student {
   major          String
   graduationYear Int
   WebsiteUrl     String?   //Optional field
-  resumeUrl      String?   //I'm not sure about this one, if we let student attached instead maybe we don't need this? Or just make it optional field
+  resumeUrl      String?   //Optional field
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+}
+
+model Employer {
+  id          String   @id
+  companyName String
+  industry    String?
+  description String?
+  websiteUrl  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [id], references: [id])
 }
