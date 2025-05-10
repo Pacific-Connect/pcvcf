@@ -12,39 +12,65 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid()) // It would be ideal if the student and employer schemas also used this
+  id        String    @id @default(uuid())
   email     String    @unique
   password  String
   isAdmin   Boolean   @default(false)
 
-  student   Student?  @relation(fields: [id], references: [id])
-  employer  Employer? @relation(fields: [id], references: [id])
+  student   Student?
+  employer  Employer?
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
 
 model Student {
-  id             String   @id @default(uuid()) //I'm thinking of personal id like facebook url to your profile that you could customize to be anything you want
+  id             String   @id
   firstName      String
   lastName       String
   email          String   @unique
   major          String
   graduationYear Int
-  WebsiteUrl     String?   //Optional field
-  resumeUrl      String?   //Optional field
+  websiteUrl     String?
+  resumeUrl      String?
+
+  user           User     @relation(fields: [id], references: [id])
+  connections    Connection[]
+
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
 
 model Employer {
   id          String   @id
-  companyName String
+  companyId   String
+  user        User     @relation(fields: [id], references: [id])
+  company     Company  @relation(fields: [companyId], references: [id])
+  connections Connection[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Company {
+  id          String    @id @default(uuid())
+  name        String
   industry    String?
   description String?
   websiteUrl  String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 
-  user        User     @relation(fields: [id], references: [id])
+  employers   Employer[]
+}
+
+model Connection {
+  id         String    @id @default(uuid())
+  studentId  String
+  employerId String
+
+  student    Student   @relation(fields: [studentId], references: [id])
+  employer   Employer  @relation(fields: [employerId], references: [id])
+
+  createdAt  DateTime  @default(now())
+
+  @@unique([studentId, employerId]) // prevent duplicates
 }
