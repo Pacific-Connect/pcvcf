@@ -25,7 +25,7 @@ export default function AboutPage() {
             <h2 className="text-center text-[2rem] mt-10 mb-[30px]">Our Team</h2>
             
             <div className="flex flex-wrap justify-center gap-5 p-5">
-                <Avatar src="/favicon.ico" alt="avatar img" name="Jesse" title='PM'/>
+                <Avatar src="/jesse.jpg" alt="avatar img" name="Jesse" title='PM' linkedinUrl='https://www.linkedin.com/in/jessemoncur/' porfotlioUrl='https://jessemoncur.wixsite.com/jesse-s-moncur'/>
                 <Avatar src="/daniel.jpeg" alt="avatar img" name="Daniel" title='Developer' linkedinUrl='https://www.linkedin.com/in/daniel-hootini/' githubUrl='https://github.com/DanielH987' porfotlioUrl='https://danielh987.github.io/portfolio/'/>
                 <Avatar src="/momo.jpg" alt="avatar img" name="Momo" title='Developer' linkedinUrl='https://www.linkedin.com/in/momochan-hk/' githubUrl='https://github.com/MOKOJOPE' porfotlioUrl='https://mokojope.github.io/MYPORFLIE/'/>
                 <Avatar src="/fah.jpg" alt="avatar img" name="Fah" title='Developer' linkedinUrl='https://www.linkedin.com/in/kanlaya-berger/' githubUrl='https://github.com/Om4njuu' porfotlioUrl='https://om4njuu.github.io/Portfolio/'/>
