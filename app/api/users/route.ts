@@ -10,15 +10,22 @@ export async function PUT(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const { email, password, isAdmin } = await request.json();
   try {
+    const body = await request.json();
+    if (!body || Object.keys(body).length === 0) {
+      return NextResponse.json(
+        { error: "Request body cannot be empty" },
+        { status: 400 }
+      );
+    }
+    const { email, password, isAdmin } = body;
     const updatedUser = await db.user.update({
       where: { id: params.id },
       data: {
         email,
         password,
         isAdmin,
-        updatedAt: new Date(), // Update the timestamp
+        updatedAt: new Date(),
       },
     });
     return NextResponse.json(updatedUser, { status: 200 });
