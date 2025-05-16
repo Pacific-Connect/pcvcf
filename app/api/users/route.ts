@@ -24,7 +24,7 @@ export async function PUT(
     return NextResponse.json(updatedUser, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { error: "User  not found or update failed" },
+      { error: "User not found or update failed" },
       { status: 404 }
     );
   }
