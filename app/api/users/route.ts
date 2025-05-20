@@ -6,13 +6,11 @@ export async function GET() {
   return NextResponse.json(users);
 }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: Request) {
   try {
+    const { id } = await request.json();
     const user = await db.user.delete({
-      where: { id: params.id },
+      where: { id },
     });
     return NextResponse.json(user, { status: 200 });
   } catch (error) {
