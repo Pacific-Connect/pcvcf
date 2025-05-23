@@ -18,13 +18,12 @@ export async function PUT(
         { status: 400 }
       );
     }
-    const { email, password, isAdmin } = body;
+    const { email, password } = body;
     const updatedUser = await db.user.update({
       where: { id: params.id },
       data: {
         email,
         password,
-        isAdmin,
         updatedAt: new Date(),
       },
     });
