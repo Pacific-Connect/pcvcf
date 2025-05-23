@@ -1,4 +1,6 @@
 // app/layout.tsx
+import { StackProvider, StackTheme } from "@stackframe/stack";
+import { stackServerApp } from "../stack";
 import Link from "next/link";
 import "./globals.css";
 import Image from "next/image";
@@ -18,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-sans bg-white text-gray-900 flex flex-col min-h-screen">
+      <body className="font-sans bg-white text-gray-900 flex flex-col min-h-screen"><StackProvider app={stackServerApp}><StackTheme>
         {/* HEADER */}
         <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
           <Link href="/">
@@ -50,7 +52,7 @@ export default function RootLayout({
         <footer className="bg-gray-800 text-white text-center py-4">
           &copy; {new Date().getFullYear()} Pacific Connect
         </footer>
-      </body>
+      </StackTheme></StackProvider></body>
     </html>
   );
 }

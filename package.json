@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.0",
     "@prisma/client": "^6.8.1",
+    "@stackframe/stack": "^2.8.12",
     "bcryptjs": "^3.0.2",
     "next": "15.2.4",
     "react": "^19.0.0",
