@@ -23,13 +23,6 @@ export default async function HeaderNav() {
         {user ? (
           <>
             <Link href="/dashboard">Dashboard</Link>
-            {/* Sign-out can be done by redirecting to this route */}
-            <Link
-              href="/handler/sign-out"
-              className="px-3 py-1.5 rounded-md border"
-            >
-              Sign out
-            </Link>
             {/* Nice avatar + dropdown from Stack */}
             <UserButton />
           </>
