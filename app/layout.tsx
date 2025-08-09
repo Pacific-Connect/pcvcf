@@ -40,7 +40,7 @@ export default async function RootLayout({
               <Link href="/skills">Skill</Link>
               <Link href="#">Find a Job</Link>
               <Link href="#">Employer</Link>
-              <Link href="/auth/login">
+              <Link href="/handler/sign-in">
                 <button className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                   Login
                 </button>
