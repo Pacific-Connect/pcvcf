@@ -2,9 +2,8 @@
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackServerApp } from "../stack";
 import { ensureAppUser } from "@/lib/ensure-app-user";
-import Link from "next/link";
 import "./globals.css";
-import Image from "next/image";
+import HeaderNav from "@/components/header-nav";
 
 export const dynamic = "force-dynamic";
 
@@ -26,28 +25,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className="font-sans bg-white text-gray-900 flex flex-col min-h-screen"><StackProvider app={stackServerApp}><StackTheme>
         {/* HEADER */}
-        <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
-          <Link href="/">
-            <div className="flex items-center space-x-2">
-              <Image src="/mainlogo.png" alt="Logo" width={45} height={45} />
-              <span className="text-2xl font-bold">Pacific Connect</span>
-            </div>
-          </Link>
-          <div className="flex items-center">
-            <nav className="flex items-center space-x-6">
-              <Link href="/">Home</Link>
-              <Link href="/about">About</Link>
-              <Link href="/skills">Skill</Link>
-              <Link href="#">Find a Job</Link>
-              <Link href="#">Employer</Link>
-              <Link href="/handler/sign-in">
-                <button className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                  Login
-                </button>
-              </Link>
-            </nav>
-          </div>
-        </header>
+        <HeaderNav />
 
         {/* Main takes up remaining space */}
         <main className="flex-1 w-full mx-auto px-4 py-8">{children}</main>
