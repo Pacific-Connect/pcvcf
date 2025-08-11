@@ -97,18 +97,23 @@ enum RoomKind {
 }
 
 model Room {
-  id          String   @id @default(uuid())
-  kind        RoomKind @default(ADHOC)
-  createdById String
-  createdBy   User     @relation(fields: [createdById], references: [id])
-  companyId   String?
-  company     Company? @relation(fields: [companyId], references: [id])
+  id            String   @id @default(uuid())
+  kind          RoomKind @default(ADHOC)
+  createdById   String
+  createdBy     User     @relation(fields: [createdById], references: [id])
+  companyId     String?
+  company       Company? @relation(fields: [companyId], references: [id])
 
-  participants RoomParticipant[]
-  messages     Message[]
+  zoomMeetingNumber String?
+  zoomPasscode      String?
+  zoomStartUrl      String?
+  zoomJoinUrl       String?
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  participants   RoomParticipant[]
+  messages       Message[]
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   @@index([companyId])
   @@index([createdById])

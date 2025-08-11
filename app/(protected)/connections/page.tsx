@@ -1,6 +1,21 @@
 // app/(protected)/connections/page.tsx
 import { stackServerApp } from "@/stack";
 import { db } from "@/lib/db";
+import { redirect } from "next/navigation";
+
+// Server action to open a room
+async function openRoom(targetId: string) {
+  "use server";
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ""}/api/rooms`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ targetId }),
+    cache: "no-store",
+  });
+  if (!res.ok) throw new Error(await res.text());
+  const { roomId } = await res.json();
+  redirect(`/meet/${roomId}`);
+}
 
 async function accept(studentId: string, employerId: string) {
   "use server";
@@ -58,6 +73,9 @@ export default async function ConnectionsPage() {
                 <form action={async () => reject(c.studentId, c.employerId)}>
                   <button className="px-3 py-1 rounded bg-red-600 text-white">Reject</button>
                 </form>
+                <form action={async () => openRoom(c.employerId)}>
+                  <button className="px-3 py-1 rounded bg-blue-600 text-white">Meet</button>
+                </form>
               </li>
             ))}
 
@@ -71,6 +89,9 @@ export default async function ConnectionsPage() {
                 </form>
                 <form action={async () => reject(c.studentId, c.employerId)}>
                   <button className="px-3 py-1 rounded bg-red-600 text-white">Reject</button>
+                </form>
+                <form action={async () => openRoom(c.studentId)}>
+                  <button className="px-3 py-1 rounded bg-blue-600 text-white">Meet</button>
                 </form>
               </li>
             ))}
