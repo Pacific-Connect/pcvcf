@@ -1,17 +1,22 @@
 // app/(public)/companies/[companyId]/page.tsx
 import { db } from "@/lib/db";
 
-export default async function CompanyPage({ params: { companyId } }: { params: { companyId: string }}) {
+type RouteParams = { companyId: string };
+
+export default async function CompanyPage(
+  { params }: { params: Promise<RouteParams> }
+) {
+  const { companyId } = await params;
+
   const company = await db.company.findUnique({
     where: { id: companyId },
     include: {
       employers: {
-        include: {
-          user: true, // minimal; expand with profile fields if you add them
-        },
+        include: { user: true },
       },
     },
   });
+
   if (!company) return <div className="max-w-3xl mx-auto">Company not found.</div>;
 
   return (
