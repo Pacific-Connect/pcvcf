@@ -8,6 +8,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ConnectionStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
 model User {
   id        String   @id
   isAdmin   Boolean  @default(false)
@@ -17,6 +23,12 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  Room Room[]
+
+  RoomParticipant RoomParticipant[]
+
+  Message Message[]
 }
 
 model Student {
@@ -30,7 +42,7 @@ model Student {
   resumeUrl      String?
 
   user           User     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  connections    Connection[]
+  connections    Connection[] @relation("StudentConnections")
 
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
@@ -42,7 +54,7 @@ model Employer {
 
   user        User     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   company     Company  @relation(fields: [companyId], references: [id])
-  connections Connection[]
+  connections Connection[] @relation("EmployerConnections")
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -56,19 +68,77 @@ model Company {
   websiteUrl  String?
 
   employers   Employer[]
+
+  Room Room[]
 }
 
 model Connection {
-  id         String   @id @default(uuid())
-  studentId  String
-  employerId String
+  id           String           @id @default(uuid())
+  studentId    String
+  employerId   String
+  status       ConnectionStatus @default(PENDING)
+  requestedAt  DateTime         @default(now())
+  respondedAt  DateTime?
 
-  student    Student  @relation(fields: [studentId], references: [id], onUpdate: Cascade)
-  employer   Employer @relation(fields: [employerId], references: [id], onUpdate: Cascade)
+  student      Student  @relation("StudentConnections", fields: [studentId], references: [id], onUpdate: Cascade)
+  employer     Employer @relation("EmployerConnections", fields: [employerId], references: [id], onUpdate: Cascade)
 
-  createdAt  DateTime @default(now())
+  createdAt    DateTime @default(now())
 
   @@unique([studentId, employerId])
   @@index([studentId])
   @@index([employerId])
+}
+
+/* Prep for Phase 4 (no UI yet, but safe to add now) */
+enum RoomKind {
+  ADHOC
+  SCHEDULED
+}
+
+model Room {
+  id          String   @id @default(uuid())
+  kind        RoomKind @default(ADHOC)
+  createdById String
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  companyId   String?
+  company     Company? @relation(fields: [companyId], references: [id])
+
+  participants RoomParticipant[]
+  messages     Message[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([companyId])
+  @@index([createdById])
+}
+
+model RoomParticipant {
+  id        String  @id @default(uuid())
+  roomId    String
+  userId    String
+  role      String  @default("guest")
+  joinedAt  DateTime @default(now())
+  leftAt    DateTime?
+
+  room      Room    @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([roomId, userId])
+  @@index([userId])
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  roomId    String
+  senderId  String
+  content   String
+  sentAt    DateTime @default(now())
+
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  sender    User     @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([roomId])
+  @@index([senderId])
 }
