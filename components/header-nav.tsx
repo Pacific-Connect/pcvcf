@@ -46,7 +46,7 @@ export default async function HeaderNav() {
         <Link href="/skills">Skills</Link>
 
         {!user && (
-          <Link href="/handler">
+          <Link href="/handler/sign-in">
             <button className="ml-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
               Sign in
             </button>
