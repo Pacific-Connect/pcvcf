@@ -8,8 +8,6 @@ import { UserButton } from "@stackframe/stack";
 
 export default async function HeaderNav() {
   const user = await stackServerApp.getUser();
-
-  // Determine role and (if employer) the companyId for the nav link
   let role: "student" | "employer" | null = null;
   let companyId: string | null = null;
 
@@ -32,8 +30,7 @@ export default async function HeaderNav() {
       </Link>
 
       <nav className="flex items-center space-x-6">
-
-        {user && role === null && (
+        {user && !role && (
           <Link href="/onboarding">
             <button className="ml-2 px-4 py-2 bg-amber-500 text-white rounded-md hover:bg-amber-600">
               Complete onboarding
@@ -44,6 +41,9 @@ export default async function HeaderNav() {
         <Link href="/">Home</Link>
         <Link href="/about">About</Link>
         <Link href="/skills">Skills</Link>
+
+        {/* Show Browse for signed-in + onboarded users */}
+        {user && role && <Link href="/browse">Browse</Link>}
 
         {!user && (
           <Link href="/handler/sign-in">
