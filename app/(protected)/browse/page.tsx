@@ -31,69 +31,63 @@ export default async function BrowsePage({
   const skip = (page - 1) * pageSize;
 
   if (role === "student") {
-    // Students browse EMPLOYERS (via their companies)
-    const where: Prisma.EmployerWhereInput = q
-      ? {
-          OR: [
-            {
-              company: {
-                is: { name: { contains: q, mode: "insensitive" as const } },
-              },
-            },
-            {
-              company: {
-                is: { industry: { contains: q, mode: "insensitive" as const } },
-              },
-            },
-            {
-              company: {
-                is: {
-                  description: { contains: q, mode: "insensitive" as const },
-                },
-              },
-            },
-          ],
-        }
-      : {};
+    // 🧭 STUDENTS BROWSE COMPANIES (unique), then see ALL employers inside each card
+    const whereCompanies: Prisma.CompanyWhereInput = {
+      AND: [
+        { employers: { some: {} } }, // only companies that actually have employers
+        q
+          ? {
+              OR: [
+                { name: { contains: q, mode: "insensitive" as const } },
+                { industry: { contains: q, mode: "insensitive" as const } },
+                { description: { contains: q, mode: "insensitive" as const } },
+              ],
+            }
+          : {},
+      ],
+    };
 
-    const [employers, total, myConnections] = await Promise.all([
-      db.employer.findMany({
-        where,
-        include: { company: true },
-        orderBy: { createdAt: "desc" },
+    const [companies, total] = await Promise.all([
+      db.company.findMany({
+        where: whereCompanies,
+        orderBy: { name: "asc" },
         skip,
         take: pageSize,
+        include: {
+          employers: {
+            orderBy: { createdAt: "desc" },
+            select: { id: true, companyId: true },
+          },
+        },
       }),
-      db.employer.count({ where }),
-      db.connection.findMany({
-        where: { studentId: auth.id },
-        select: { employerId: true, status: true },
-      }),
+      db.company.count({ where: whereCompanies }),
     ]);
 
-    const statusMap = new Map<string, UIStatus>(
-      myConnections.map((c) => [c.employerId, c.status as UIStatus])
-    );
+    // Build status map for this student to each employer in the current page
+    const employerIds = companies.flatMap((c) => c.employers.map((e) => e.id));
+    const statusMap = new Map<string, UIStatus>();
+    if (employerIds.length) {
+      const myConnections = await db.connection.findMany({
+        where: { studentId: auth.id, employerId: { in: employerIds } },
+        select: { employerId: true, status: true },
+      });
+      for (const c of myConnections) statusMap.set(c.employerId, c.status as UIStatus);
+    }
 
     return (
       <div className="max-w-6xl mx-auto space-y-6">
         <Header q={q} />
-        <h1 className="text-2xl font-semibold">Browse Employers</h1>
+        <h1 className="text-2xl font-semibold">Browse Companies</h1>
 
         <Grid>
-          {employers.map((e) => (
+          {companies.map((co) => (
             <ProfileCard
-              key={e.id}
-              title={e.company?.name ?? "Employer"}
-              subtitle={e.company?.industry ?? ""}
-              description={e.company?.description ?? ""}
-              right={<CompanyLink companyId={e.companyId} />}
-            >
-              <ConnectButton
-                targetId={e.id}
-                initialStatus={statusMap.get(e.id) ?? "NONE"}
-              />
-            </ProfileCard>
+              key={co.id}
+              title={co.name}
+              subtitle={co.industry ?? ""}
+              description={co.description ?? ""}
+              right={<CompanyLink companyId={co.id} />}
+            />
           ))}
         </Grid>
 
@@ -102,7 +96,7 @@ export default async function BrowsePage({
     );
   }
 
-  // Employers browse STUDENTS
+  // 👔 EMPLOYERS BROWSE STUDENTS (unchanged)
   const where: Prisma.StudentWhereInput = q
     ? {
         OR: [
@@ -164,7 +158,7 @@ function Header({ q }: { q: string }) {
       <input
         name="q"
         defaultValue={q}
-        placeholder="Search by name, major, company, industry…"
+        placeholder="Search companies or students…"
         className="border p-2 rounded w-full"
       />
       <button className="px-4 py-2 rounded bg-blue-600 text-white">Search</button>
