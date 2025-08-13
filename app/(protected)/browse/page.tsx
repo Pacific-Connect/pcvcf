@@ -192,15 +192,15 @@ function Pager({
     `/browse?page=${p}${q ? `&q=${encodeURIComponent(q)}` : ""}`;
   return (
     <div className="flex items-center gap-2">
-      <a href={makeHref(Math.max(1, page - 1))} className="px-3 py-1 border rounded">
+      <Link href={makeHref(Math.max(1, page - 1))} className="px-3 py-1 border rounded">
         Prev
-      </a>
+      </Link>
       <span>
         Page {page} of {pages}
       </span>
-      <a href={makeHref(Math.min(pages, page + 1))} className="px-3 py-1 border rounded">
+      <Link href={makeHref(Math.min(pages, page + 1))} className="px-3 py-1 border rounded">
         Next
-      </a>
+      </Link>
     </div>
   );
 }
