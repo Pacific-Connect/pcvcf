@@ -10,9 +10,9 @@ export const dynamic = "force-dynamic"; // page depends on auth cookies
 export default async function CompanyPage({
   params,
 }: {
-  params: { companyId: string };
+  params: Promise<{ companyId: string }>;
 }) {
-  const { companyId } = params;
+  const { companyId } = await params;
 
   // Fetch company + all employers
   const [company, auth] = await Promise.all([
@@ -21,7 +21,6 @@ export default async function CompanyPage({
       include: {
         employers: {
           orderBy: { createdAt: "desc" },
-          // You can also include { user: true } but your User model doesn't carry name/email
         },
       },
     }),
@@ -93,7 +92,9 @@ export default async function CompanyPage({
                     <div className="font-medium">
                       Employer User ID:{" "}
                       <span className="font-mono">{shorten(e.id)}</span>{" "}
-                      {isMe && <span className="text-sm text-gray-500">(You)</span>}
+                      {isMe && (
+                        <span className="text-sm text-gray-500">(You)</span>
+                      )}
                     </div>
                     <div className="text-sm text-gray-600">
                       {/* Placeholder: when you add employer profile fields or auth-user mapping,
