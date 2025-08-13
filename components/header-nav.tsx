@@ -55,6 +55,7 @@ export default async function HeaderNav() {
 
         {user && (
           <>
+            <Link href="/browse">Browse</Link> 
             <Link href="/dashboard">Dashboard</Link>
             {role === "employer" && companyId && (
               <Link href={`/companies/${companyId}`}>My Company</Link>
