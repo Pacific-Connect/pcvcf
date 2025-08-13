@@ -108,12 +108,6 @@ export default function SkillsInfoPage() {
               Manage Your Skills
             </a>
           </section>
-  
-          <p className="mt-8 text-center text-sm text-gray-700">
-            <a href="../" className="text-blue-600 hover:underline">
-              Back to Home
-            </a>
-          </p>
         </div>
       </div>
     );
