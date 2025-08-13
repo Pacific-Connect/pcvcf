@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import ProfileCard from "@/components/profile-card";
 import ConnectButton from "@/components/connect-button";
 import type { Prisma, ConnectionStatus } from "@prisma/client";
+import Link from "next/link";
 
 type UIStatus = ConnectionStatus | "NONE";
 
@@ -206,8 +207,8 @@ function Pager({
 
 function CompanyLink({ companyId }: { companyId: string }) {
   return (
-    <a href={`/companies/${companyId}`} className="text-sm text-blue-600 underline">
+    <Link href={`/companies/${companyId}`} className="text-sm text-blue-600 underline">
       View company
-    </a>
+    </Link>
   );
 }
